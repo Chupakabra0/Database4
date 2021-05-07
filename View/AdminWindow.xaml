@@ -1,0 +1,132 @@
+﻿<Window x:Class="Database4.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="478" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="../Resource/Font/Fonts.xaml" />
+    </Window.Resources>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Tab controls for table choose -->
+        <!-- TODO: make dynamic count of tab items -->
+        <TabControl Grid.Row="0">
+            <!-- Authors panel !-->
+            <TabItem Name="Authors" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+        
+            <TabItem Name="Books" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Cathedras" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Cities" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="ClientCards" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="Countries" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="Degrees" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="Faculties" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="FacultiesAndSpecialties" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="FacultiesAndSpecialtiesAndCathedras" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="Genres" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Groups" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="LibraryTransactions" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Publishers" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Specialties" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Students" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Teachers" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem Name="Workers" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
+                <DataGrid AutoGenerateColumns="True">
+
+                </DataGrid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
