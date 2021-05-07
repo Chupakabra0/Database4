@@ -1,0 +1,114 @@
+﻿<Window x:Class="Database4.View.AddCountry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Добавить страну"
+        MinHeight="360" MinWidth="520"
+        Height="{Binding RelativeSource={RelativeSource Self}, Path=MinHeight}"
+        Width="{Binding RelativeSource={RelativeSource Self}, Path=MinWidth}"
+        ResizeMode="NoResize">
+    <!-- Connect static resources/styles/etc -->
+    <Window.Resources>
+        <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"/>
+    </Window.Resources>
+
+    <!-- Main grid -->
+    <Grid>
+        <!-- Three rows -->
+        <Grid.RowDefinitions>
+            <!-- For main content -->
+            <RowDefinition Height="*"></RowDefinition>
+            <!-- For bottom buttons -->
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Main content -->
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <!-- Two rows -->
+            <Grid.RowDefinitions>
+                <!-- Header -->
+                <RowDefinition Height="Auto"></RowDefinition>
+                <!-- TextBoxes' content -->
+                <RowDefinition Height="*"></RowDefinition>
+                <!-- CheckBoxes' section -->
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid Grid.Row="0" Margin="10">
+                <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление страны" Style="{StaticResource AddWindow Header}"></Label>
+            </Grid>
+
+            <!-- TextBoxes' content -->
+            <Grid Grid.Row="1" Margin="10">
+
+                <!-- Two columns -->
+                <Grid.ColumnDefinitions>
+                    <!-- TextBlocks -->
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <!-- TextBoxes -->
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- TextBlocks' stack panel -->
+                <StackPanel Grid.Column="0" Margin="10,0" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource AddWindow TextBox Title}"></Style>
+                    </StackPanel.Resources>
+                    <Grid>
+                        <TextBlock Text="Идентификатор:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Полное название страны:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Короткое название страны:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Код ISO:"></TextBlock>
+                    </Grid>
+                </StackPanel>
+
+                <!-- TextBoxes' stack panel -->
+                <StackPanel Grid.Column="1" Margin="10,0" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
+                    </StackPanel.Resources>
+                    <Grid>
+                        <TextBox Name="ID" IsEnabled="False">0</TextBox>
+                    </Grid>
+                    <Grid>
+                        <TextBox Name="LongName"></TextBox>
+                    </Grid>
+                    <Grid>
+                        <TextBox Name="ShortName"></TextBox>
+                    </Grid>
+                    <Grid>
+                        <TextBox Name="ISOCode"></TextBox>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <!-- CheckBoxes' section -->
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
+                    </StackPanel.Resources>
+                    <CheckBox Padding="5, 0" Content="Активная"></CheckBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- Bottom buttons -->
+        <Grid Grid.Row="2" Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}"></Button>
+                <Button Name="Add" Style="{StaticResource AddWindow Add Button}"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
