@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Grandview fonts -->
+    <FontFamily x:Key="Grandview Regular">#Grandview</FontFamily>
+    <FontFamily x:Key="Grandview Bold">#Grandview Bold</FontFamily>
+    <FontFamily x:Key="Grandview Italic">#Grandview Italic</FontFamily>
+    <FontFamily x:Key="Grandview Bold Italic">#Grandview Bold Italic</FontFamily>
+
+</ResourceDictionary>
