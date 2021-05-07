@@ -62,7 +62,7 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Полное название степени:"></TextBlock>
+                        <TextBlock Text="Название степени:"></TextBlock>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Буква степени:"></TextBlock>
