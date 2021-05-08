@@ -1,10 +1,10 @@
-﻿<Window x:Class="Database4.View.AddFaculty"
+﻿<Window x:Class="Database4.View.AddPublisher"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Добавить факультет">
+        Title="Добавить издание">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
@@ -34,7 +34,7 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление факультета" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление издания" Style="{StaticResource AddWindow Header}"></Label>
         </Grid>
 
         <!-- Main content -->
@@ -68,13 +68,10 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Полное название факультета:"></TextBlock>
+                        <TextBlock Text="Название:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Краткое название факультета:"></TextBlock>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Буква специальности:"></TextBlock>
+                        <TextBlock Text="Город:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -82,6 +79,7 @@
                 <StackPanel Grid.Column="1" Margin="10,0" VerticalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
                         <TextBox Name="ID" IsEnabled="False">0</TextBox>
@@ -90,10 +88,17 @@
                         <TextBox Name="Name"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="ShortName"></TextBox>
-                    </Grid>
-                    <Grid>
-                        <TextBox Name="ShortLetter"></TextBox>
+                        <ComboBox Name="City">
+                            <ComboBoxItem>
+                                Львов
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Москва
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Прага
+                            </ComboBoxItem>
+                        </ComboBox>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -104,7 +109,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активный"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активное"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

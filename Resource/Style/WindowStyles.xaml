@@ -6,7 +6,7 @@
     <!--==============================================================================-->
 
     <Style TargetType="Window" x:Key="AddWindow">
-        <Setter Property="MinHeight" Value="360"></Setter>
+        <Setter Property="MinHeight" Value="370"></Setter>
         <Setter Property="MinWidth" Value="540"></Setter>
         <Setter Property="ResizeMode" Value="NoResize"></Setter>
         <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Self}, Path=MinHeight}"></Setter>

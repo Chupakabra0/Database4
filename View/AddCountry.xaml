@@ -4,46 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Добавить страну"
-        MinHeight="360" MinWidth="520"
-        Height="{Binding RelativeSource={RelativeSource Self}, Path=MinHeight}"
-        Width="{Binding RelativeSource={RelativeSource Self}, Path=MinWidth}"
-        ResizeMode="NoResize">
+        Title="Добавить страну">
+
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
-        <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
+
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource AddWindow}"></Style>
+    </Window.Style>
 
     <!-- Main grid -->
     <Grid>
         <!-- Three rows -->
         <Grid.RowDefinitions>
+            <!-- Header -->
+            <RowDefinition Height="Auto"></RowDefinition>
             <!-- For main content -->
             <RowDefinition Height="*"></RowDefinition>
             <!-- For bottom buttons -->
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0, 30, 0, 0">
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление страны" Style="{StaticResource AddWindow Header}"></Label>
+        </Grid>
+
         <!-- Main content -->
-        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <!-- Two rows -->
             <Grid.RowDefinitions>
-                <!-- Header -->
-                <RowDefinition Height="Auto"></RowDefinition>
                 <!-- TextBoxes' content -->
                 <RowDefinition Height="*"></RowDefinition>
                 <!-- CheckBoxes' section -->
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <!-- Header -->
-            <Grid Grid.Row="0" Margin="10">
-                <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление страны" Style="{StaticResource AddWindow Header}"></Label>
-            </Grid>
-
             <!-- TextBoxes' content -->
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="0" Margin="10">
 
                 <!-- Two columns -->
                 <Grid.ColumnDefinitions>
@@ -93,7 +99,7 @@
             </Grid>
 
             <!-- CheckBoxes' section -->
-            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical">
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
