@@ -2,8 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
         Title="Добавить связь факультет-специальность-кафедра">
 
     <!-- Connect static resources/styles/etc -->
@@ -89,32 +88,14 @@
                         <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
-                        <TextBox Name="ID" IsEnabled="False">0</TextBox>
+                        <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <ComboBox Name="FacultyAndSpecialty">
-                            <ComboBoxItem>
-                                Факультет 1
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Факультет 2
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Факультет 3
-                            </ComboBoxItem>
+                        <ComboBox Name="FacultyAndSpecialty" ItemsSource="{Binding Path=FacultyAndSpecialties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedFacultyAndSpecialtyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                     <Grid>
-                        <ComboBox Name="Cathedra">
-                            <ComboBoxItem>
-                                Специальность 1
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Специальность 2
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Специальность 3
-                            </ComboBoxItem>
+                        <ComboBox Name="Cathedra" ItemsSource="{Binding Path=Cathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                 </StackPanel>
@@ -126,7 +107,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -134,8 +115,15 @@
         <!-- Bottom buttons -->
         <Grid Grid.Row="2" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}"></Button>
-                <Button Name="Add" Style="{StaticResource AddWindow Add Button}"></Button>
+                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+                            </i:CallMethodAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Name="Add" Style="{StaticResource AddWindow Add Button}" Command="{Binding Path=AddCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>

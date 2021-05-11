@@ -2,8 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
         Title="Добавить группу">
 
     <!-- Connect static resources/styles/etc -->
@@ -88,38 +87,20 @@
                         <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
-                        <TextBox Name="ID" IsEnabled="False">0</TextBox>
+                        <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Year"></TextBox>
+                        <TextBox Name="Year" Text="{Binding Path=Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Serial"></TextBox>
+                        <TextBox Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <ComboBox Name="FacultyAndSpecialtyAndCathedra">
-                            <ComboBoxItem>
-                                Украина
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Россия
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Чехия
-                            </ComboBoxItem>
+                        <ComboBox Name="FacultyAndSpecialtyAndCathedra" ItemsSource="{Binding Path=FacultyAndSpecialtyAndCathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedFacultyAndSpecialtyAndCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                     <Grid>
-                        <ComboBox Name="Degree">
-                            <ComboBoxItem>
-                                Украина
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Россия
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Чехия
-                            </ComboBoxItem>
+                        <ComboBox Name="Degree" ItemsSource="{Binding Path=Degrees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedDegreeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                 </StackPanel>
@@ -131,7 +112,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -139,8 +120,15 @@
         <!-- Bottom buttons -->
         <Grid Grid.Row="2" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}"></Button>
-                <Button Name="Add" Style="{StaticResource AddWindow Add Button}"></Button>
+                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+                            </i:CallMethodAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Name="Add" Style="{StaticResource AddWindow Add Button}" Command="{Binding Path=AddCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>

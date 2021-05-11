@@ -136,13 +136,29 @@
             </TabItem>
 
             <TabItem Name="FacultiesAndSpecialties" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid>
+                <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=FacultyAndSpecialties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedFacultyAndSpecialty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>
 
             <TabItem Name="FacultiesAndSpecialtiesAndCathedras" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid AutoGenerateColumns="True">
+                <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=FacultyAndSpecialtyAndCathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedFacultyAndSpecialtyAndCathedra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>
@@ -162,7 +178,15 @@
             </TabItem>
             
             <TabItem Name="Groups" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid AutoGenerateColumns="True">
+                <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=Groups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>

@@ -26,6 +26,10 @@ namespace Database4.ViewModel {
             this.UpdateWorkers();
             this.UpdatePublishers();
             this.UpdateBooks();
+            this.UpdateFacultyAndSpecialties();
+            this.UpdateFacultyAndSpecialtyAndCathedras();
+            this.UpdateSpecialties();
+            this.UpdateGroups();
             //DO NOT FORGET TO UPDATE THIS
         }
 
@@ -481,9 +485,127 @@ namespace Database4.ViewModel {
 
         #endregion
 
+        #region FACULTIES_AND_SPECIALTIES
+
+        public List<FacultyAndSpecialtyViewModel> FacultyAndSpecialties  { get; set; }
+        public FacultyAndSpecialtyViewModel SelectedFacultyAndSpecialty  { get; set; }
+
+        public List<FacultyAndSpecialtyViewModel> GetFacultyAndSpecialties() =>
+            new FacultyAndSpecialtyDealer().Select(GlobalAppDataContext.Instance)
+                .Select(fas => new FacultyAndSpecialtyViewModel(fas, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateFacultyAndSpecialties() => this.FacultyAndSpecialties = this.GetFacultyAndSpecialties();
+
+        public void AddToFacultyAndSpecialties() {
+            var temp = new AddFacultyAndSpecialty();
+            temp.DataContext = new AddFacultyAndSpecialtyViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditFacultyAndSpecialties() {
+            var temp = new AddFacultyAndSpecialty();
+            temp.DataContext = new AddFacultyAndSpecialtyViewModel(temp, this.SelectedFacultyAndSpecialty.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteFacultyAndSpecialties() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить эту связь?", "Удаление связи", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new FacultyAndSpecialtyDealer().Delete(GlobalAppDataContext.Instance, this.SelectedFacultyAndSpecialty.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToFacultyAndSpecialtiesCommand  => new RelayCommand(this.AddToFacultyAndSpecialties);
+        public ICommand EditFacultyAndSpecialtiesCommand   => new RelayCommand(this.EditFacultyAndSpecialties, _ => this.SelectedFacultyAndSpecialty != null);
+        public ICommand DeleteFacultyAndSpecialtiesCommand => new RelayCommand(this.DeleteFacultyAndSpecialties, _ => this.SelectedFacultyAndSpecialty != null);
+
+        #endregion
+
+        #region FACULTIES_AND_SPECIALTIES_AND_CATHEDRA
+
+        public List<FacultyAndSpecialtyAndCathedraViewModel> FacultyAndSpecialtyAndCathedras  { get; set; }
+        public FacultyAndSpecialtyAndCathedraViewModel SelectedFacultyAndSpecialtyAndCathedra { get; set; }
+
+        public List<FacultyAndSpecialtyAndCathedraViewModel> GetFacultyAndSpecialtyAndCathedras() =>
+            new FacultyAndSpecialtyAndCathedraDealer().Select(GlobalAppDataContext.Instance)
+                .Select(fasac => new FacultyAndSpecialtyAndCathedraViewModel(fasac, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateFacultyAndSpecialtyAndCathedras() => this.FacultyAndSpecialtyAndCathedras = this.GetFacultyAndSpecialtyAndCathedras();
+
+        public void AddToFacultyAndSpecialtyAndCathedras() {
+            var temp = new AddFacultyAndSpecialtyAndCathedra();
+            temp.DataContext = new AddFacultyAndSpecialtyAndCathedraViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditFacultyAndSpecialtyAndCathedras() {
+            var temp = new AddFacultyAndSpecialtyAndCathedra();
+            temp.DataContext = new AddFacultyAndSpecialtyAndCathedraViewModel(temp, this.SelectedFacultyAndSpecialtyAndCathedra.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteFacultyAndSpecialtyAndCathedras() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить эту связь?", "Удаление связи", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new FacultyAndSpecialtyAndCathedraDealer().Delete(GlobalAppDataContext.Instance, this.SelectedFacultyAndSpecialtyAndCathedra.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToFacultyAndSpecialtyAndCathedrasCommand  => new RelayCommand(this.AddToFacultyAndSpecialtyAndCathedras);
+        public ICommand EditFacultyAndSpecialtyAndCathedrasCommand   => new RelayCommand(this.EditFacultyAndSpecialtyAndCathedras, _ => this.SelectedFacultyAndSpecialtyAndCathedra != null);
+        public ICommand DeleteFacultyAndSpecialtyAndCathedrasCommand => new RelayCommand(this.DeleteFacultyAndSpecialtyAndCathedras, _ => this.SelectedFacultyAndSpecialtyAndCathedra != null);
+
+        #endregion
+
+        #region GROUPS
+
+        public List<GroupViewModel> Groups { get; set; }
+        public GroupViewModel SelectedGroup { get; set; }
+
+        public List<GroupViewModel> GetGroups() =>
+            new GroupDealer().Select(GlobalAppDataContext.Instance)
+                .Select(book => new GroupViewModel(book, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateGroups() => this.Groups = this.GetGroups();
+
+        public void AddToGroups() {
+            var temp = new AddGroup();
+            temp.DataContext = new AddGroupViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditGroups() {
+            var temp = new AddGroup();
+            temp.DataContext = new AddGroupViewModel(temp, this.SelectedGroup.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteGroups() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить эту группу?", "Удаление группы", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new BookDealer().Delete(GlobalAppDataContext.Instance, this.SelectedGroup.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToGroupsCommand  => new RelayCommand(this.AddToGroups);
+        public ICommand EditGroupsCommand   => new RelayCommand(this.EditGroups, _ => this.SelectedGroup != null);
+        public ICommand DeleteGroupsCommand => new RelayCommand(this.DeleteGroups, _ => this.SelectedGroup != null);
+
+        #endregion
+
         //public List<ClientCard> ClientCards                                         { get; set; }
-        //public List<FacultyAndSpecialty> FacultyAndSpecialties                      { get; set; }
-        //public List<FacultyAndSpecialtyAndCathedra> FacultyAndSpecialtyAndCathedras { get; set; }
         //public List<Group> Groups                                                   { get; set; }
         //public List<LibraryTransaction> LibraryTransactions                         { get; set; }
         //public List<Student> Students                                               { get; set; }
@@ -498,14 +620,9 @@ namespace Database4.ViewModel {
 
         public string Title => "БД \"Библиотека университета\"";
 
-        //public ICommand temp => this.SelectedTab switch {
-        //    nameof(AppDataContext.Countries) => this.AddToCountriesCommand,
-        //    _ => new RelayCommand(() => MessageBox.Show("FUCK!"))
-        //};
-
-        public ICommand AddCommand    => this.AddToBooksCommand;
-        public ICommand EditCommand   => this.EditBooksCommand;
-        public ICommand DeleteCommand => this.DeleteBooksCommand;
+        public ICommand AddCommand    => this.AddToGroupsCommand;
+        public ICommand EditCommand   => this.EditGroupsCommand;
+        public ICommand DeleteCommand => this.DeleteGroupsCommand;
         public ICommand UpdateCommand => new RelayCommand(this.UpdateAll);
     }
 }
