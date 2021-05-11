@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <PackageReference Include="DataGridExtensions" Version="2.6.0-beta1" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
+    <Folder Include="ViewModel\Command\" />
   </ItemGroup>
 
 </Project>

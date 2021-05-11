@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Добавить страну">
 
@@ -84,16 +85,16 @@
                         <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
-                        <TextBox Name="ID" IsEnabled="False">0</TextBox>
+                        <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="LongName"></TextBox>
+                        <TextBox Name="LongName" Text="{Binding Path=LongName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="ShortName"></TextBox>
+                        <TextBox Name="ShortName" Text="{Binding Path=ShortName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="ISOCode"></TextBox>
+                        <TextBox Name="ISOCode" Text="{Binding Path=ISOCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -104,7 +105,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -112,8 +113,15 @@
         <!-- Bottom buttons -->
         <Grid Grid.Row="2" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}"></Button>
-                <Button Name="Add" Style="{StaticResource AddWindow Add Button}"></Button>
+                <Button Name="Cancel" Style="{StaticResource AddWindow Cancel Button}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+                            </i:CallMethodAction> 
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Name="Add" Style="{StaticResource AddWindow Add Button}" Command="{Binding Path=AddCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>
