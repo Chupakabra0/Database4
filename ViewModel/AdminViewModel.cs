@@ -30,6 +30,8 @@ namespace Database4.ViewModel {
             this.UpdateFacultyAndSpecialtyAndCathedras();
             this.UpdateSpecialties();
             this.UpdateGroups();
+            this.UpdateStudents();
+            this.UpdateTeachers();
             //DO NOT FORGET TO UPDATE THIS
         }
 
@@ -605,11 +607,88 @@ namespace Database4.ViewModel {
 
         #endregion
 
+        #region STUDENTS
+
+        public List<StudentViewModel> Students  { get; set; }
+        public StudentViewModel SelectedStudent { get; set; }
+
+        public List<StudentViewModel> GetStudents() =>
+            new StudentDealer().Select(GlobalAppDataContext.Instance)
+                .Select(student => new StudentViewModel(student, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateStudents() => this.Students = this.GetStudents();
+
+        public void AddToStudents() {
+            var temp = new AddStudent();
+            temp.DataContext = new AddStudentViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditStudents() {
+            var temp = new AddStudent();
+            temp.DataContext = new AddStudentViewModel(temp, this.SelectedStudent.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteStudents() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить этого студента?", "Удаление студента", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new StudentDealer().Delete(GlobalAppDataContext.Instance, this.SelectedStudent.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToStudentsCommand  => new RelayCommand(this.AddToStudents);
+        public ICommand EditStudentsCommand   => new RelayCommand(this.EditStudents, _ => this.SelectedStudent != null);
+        public ICommand DeleteStudentsCommand => new RelayCommand(this.DeleteStudents, _ => this.SelectedStudent != null);
+
+        #endregion
+
+        #region TEACHERS
+
+        public List<TeacherViewModel> Teachers  { get; set; }
+        public TeacherViewModel SelectedTeacher { get; set; }
+
+        public List<TeacherViewModel> GetTeachers() =>
+            new TeacherDealer().Select(GlobalAppDataContext.Instance)
+                .Select(teacher => new TeacherViewModel(teacher, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateTeachers() => this.Teachers = this.GetTeachers();
+
+        public void AddToTeachers() {
+            var temp = new AddTeacher();
+            temp.DataContext = new AddTeacherViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditTeachers() {
+            var temp = new AddTeacher();
+            temp.DataContext = new AddTeacherViewModel(temp, this.SelectedTeacher.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteTeachers() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить этого преподавателя?", "Удаление преподавателя", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new TeacherDealer().Delete(GlobalAppDataContext.Instance, this.SelectedTeacher.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToTeachersCommand  => new RelayCommand(this.AddToTeachers);
+        public ICommand EditTeachersCommand   => new RelayCommand(this.EditTeachers, _ => this.SelectedTeacher != null);
+        public ICommand DeleteTeachersCommand => new RelayCommand(this.DeleteTeachers, _ => this.SelectedTeacher != null);
+
+        #endregion
+
         //public List<ClientCard> ClientCards                                         { get; set; }
-        //public List<Group> Groups                                                   { get; set; }
         //public List<LibraryTransaction> LibraryTransactions                         { get; set; }
-        //public List<Student> Students                                               { get; set; }
-        //public List<Teacher> Teachers                                               { get; set; }
 
         public string SelectedTab { get; set; } 
 
@@ -620,9 +699,9 @@ namespace Database4.ViewModel {
 
         public string Title => "БД \"Библиотека университета\"";
 
-        public ICommand AddCommand    => this.AddToGroupsCommand;
-        public ICommand EditCommand   => this.EditGroupsCommand;
-        public ICommand DeleteCommand => this.DeleteGroupsCommand;
+        public ICommand AddCommand    => this.AddToTeachersCommand;
+        public ICommand EditCommand   => this.EditTeachersCommand;
+        public ICommand DeleteCommand => this.DeleteTeachersCommand;
         public ICommand UpdateCommand => new RelayCommand(this.UpdateAll);
     }
 }

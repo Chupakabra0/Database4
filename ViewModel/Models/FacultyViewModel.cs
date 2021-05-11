@@ -16,6 +16,6 @@ namespace ConsoleDBTest.ViewModels {
         public string ShortLetter { get; set; }
         public bool   IsActive    { get; set; }
 
-        public override string ToString() => this.Name;
+        public override string ToString() => this.ShortName;
     }
 }

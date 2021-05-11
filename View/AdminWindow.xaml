@@ -226,13 +226,29 @@
             </TabItem>
             
             <TabItem Name="Students" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid AutoGenerateColumns="True">
+                <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=Students, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedStudent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>
             
             <TabItem Name="Teachers" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid AutoGenerateColumns="True">
+                <DataGrid  dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=Teachers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedTeacher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>
