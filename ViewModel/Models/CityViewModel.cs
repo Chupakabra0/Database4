@@ -22,8 +22,7 @@ namespace ConsoleDBTest.ViewModels {
         public string Country  { get; set; }
         public bool   IsActive { get; set; }
 
-        public override string ToString() {
-            return this.Name;
-        }
+        public override string ToString() => this.Name;
+        
     }
 }

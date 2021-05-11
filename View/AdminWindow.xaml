@@ -46,7 +46,15 @@
             </TabItem>
         
             <TabItem Name="Books" Header="{Binding RelativeSource={RelativeSource Self}, Path=Name}">
-                <DataGrid AutoGenerateColumns="True">
+                <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True"
+                          CanUserSortColumns="True"
+                          CanUserDeleteRows="True"
+                          CanUserAddRows="True"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Path=Books, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedBook, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectionMode="Single"
+                          AutoGenerateColumns="True">
 
                 </DataGrid>
             </TabItem>

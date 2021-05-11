@@ -21,5 +21,7 @@ namespace ConsoleDBTest.ViewModels {
         public string Name     { get; set; }
         public string City     { get; set; }
         public bool   IsActive { get; set; }
+
+        public override string ToString() => $"\"{this.Name}\"";
     }
 }

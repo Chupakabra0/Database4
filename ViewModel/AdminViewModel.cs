@@ -25,6 +25,7 @@ namespace Database4.ViewModel {
             this.UpdateDegrees();
             this.UpdateWorkers();
             this.UpdatePublishers();
+            this.UpdateBooks();
             //DO NOT FORGET TO UPDATE THIS
         }
 
@@ -440,7 +441,46 @@ namespace Database4.ViewModel {
 
         #endregion
 
-        //public List<Book> Books                                                     { get; set; }
+        #region BOOKS
+
+        public List<BookViewModel> Books  { get; set; }
+        public BookViewModel SelectedBook { get; set; }
+
+        public List<BookViewModel> GetBooks() =>
+            new BookDealer().Select(GlobalAppDataContext.Instance)
+                .Select(book => new BookViewModel(book, GlobalAppDataContext.Instance)).ToList();
+
+        public void UpdateBooks() => this.Books = this.GetBooks();
+
+        public void AddToBooks() {
+            var temp = new AddBook();
+            temp.DataContext = new AddBookViewModel(temp);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void EditBooks() {
+            var temp = new AddBook();
+            temp.DataContext = new AddBookViewModel(temp, this.SelectedBook.Id);
+            if (temp.ShowDialog() is true) {
+                this.UpdateAll();
+            }
+        }
+
+        public void DeleteBooks() {
+            if (MessageBox.Show("Вы уверены, что хотите удалить эту книгу?", "Удаление книги", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
+                new BookDealer().Delete(GlobalAppDataContext.Instance, this.SelectedBook.Id);
+                this.UpdateAll();
+            }
+        }
+
+        public ICommand AddToBooksCommand  => new RelayCommand(this.AddToBooks);
+        public ICommand EditBooksCommand   => new RelayCommand(this.EditBooks, _ => this.SelectedBook != null);
+        public ICommand DeleteBooksCommand => new RelayCommand(this.DeleteBooks, _ => this.SelectedBook != null);
+
+        #endregion
+
         //public List<ClientCard> ClientCards                                         { get; set; }
         //public List<FacultyAndSpecialty> FacultyAndSpecialties                      { get; set; }
         //public List<FacultyAndSpecialtyAndCathedra> FacultyAndSpecialtyAndCathedras { get; set; }
@@ -463,9 +503,9 @@ namespace Database4.ViewModel {
         //    _ => new RelayCommand(() => MessageBox.Show("FUCK!"))
         //};
 
-        public ICommand AddCommand    => this.AddToPublishersCommand;
-        public ICommand EditCommand   => this.EditPublishersCommand;
-        public ICommand DeleteCommand => this.DeletePublishersCommand;
+        public ICommand AddCommand    => this.AddToBooksCommand;
+        public ICommand EditCommand   => this.EditBooksCommand;
+        public ICommand DeleteCommand => this.DeleteBooksCommand;
         public ICommand UpdateCommand => new RelayCommand(this.UpdateAll);
     }
 }

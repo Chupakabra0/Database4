@@ -16,8 +16,6 @@ namespace ConsoleDBTest.ViewModels {
         public string ISOCode   { get; set; }
         public bool   IsActive  { get; set; }
 
-        public override string ToString() {
-            return this.ShortName;
-        }
+        public override string ToString() => this.ShortName;   
     }
 }

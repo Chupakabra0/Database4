@@ -1,4 +1,5 @@
 ﻿using ConsoleDBTest.Models;
+using ConsoleDBTest.Utils.StringUtils;
 
 namespace ConsoleDBTest.ViewModels {
     public class WorkerViewModel {
@@ -15,5 +16,7 @@ namespace ConsoleDBTest.ViewModels {
         public string Surname    { get; set; }
         public string Patronymic { get; set; }
         public bool   IsActive   { get; set; }
+
+        public override string ToString() => StringUtils.GetPersonName(this.Name, this.Surname, this.Patronymic);
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System;
 using Database4.Data;
+using ConsoleDBTest.Utils.StringUtils;
 
 namespace ConsoleDBTest.ViewModels {
     public class AuthorViewModel {
@@ -22,10 +23,9 @@ namespace ConsoleDBTest.ViewModels {
         public bool   IsActive   { get; set; }
 
         public override string ToString() {
-            return "FUCK";
-            //return string.IsNullOrEmpty(this.Pseudonym)
-            //    ? StringUtils.GetPersonName(this.Name, this.Surname, this.Patronymic)
-            //    : this.Pseudonym;
+            return string.IsNullOrEmpty(this.Pseudonym)
+                ? StringUtils.GetPersonName(this.Name, this.Surname, this.Patronymic)
+                : this.Pseudonym;
         }
     }
 }
