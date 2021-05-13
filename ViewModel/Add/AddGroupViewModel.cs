@@ -16,6 +16,7 @@ namespace Database4.ViewModel {
                 ($"select last_value from sys.identity_columns as a where object_id = object_id('{ nameof(AppDataContext.Groups) }')").ToList().FirstOrDefault() ?? 0) + 1;
             this.Year = DateTime.Today.Year;
             this.Serial = 1;
+            this.IsActive = true;
         }
 
         public AddGroupViewModel(Window windowRef, int id) : base(windowRef) {

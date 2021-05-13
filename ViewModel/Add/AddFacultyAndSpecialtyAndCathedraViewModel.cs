@@ -14,6 +14,7 @@ namespace Database4.ViewModel {
             this.AddCommand = new RelayCommand(this.Add);
             this.Id = Convert.ToInt32(GlobalAppDataContext.Instance.Database.SqlQuery<int?>
                 ($"select last_value from sys.identity_columns as a where object_id = object_id('{ nameof(AppDataContext.FacultyAndSpecialtyAndCathedras) }')").ToList().FirstOrDefault() ?? 0) + 1;
+            this.IsActive = true;
         }
 
         public AddFacultyAndSpecialtyAndCathedraViewModel(Window windowRef, int id) : base(windowRef) {
