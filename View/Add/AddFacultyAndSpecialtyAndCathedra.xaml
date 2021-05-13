@@ -1,16 +1,16 @@
-﻿<Window x:Class="Database4.View.AddGenre"
+﻿<Window x:Class="Database4.View.AddFacultyAndSpecialtyAndCathedra"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
-        Title="Добавить жанр">
+        Title="Добавить связь факультет-специальность-кафедра">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/WindowStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -33,7 +33,11 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление жанра" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource AddWindow Header}">
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Добавление связи факультет-специальность-кафедра"
+                           Width="300"></TextBlock>
+            </Label>
         </Grid>
 
         <!-- Main content -->
@@ -41,6 +45,9 @@
 
             <!-- Two rows -->
             <Grid.RowDefinitions>
+                <!-- Header -->
+                <!--
+                <RowDefinition Height="Auto"></RowDefinition>-->
                 <!-- TextBoxes' content -->
                 <RowDefinition Height="*"></RowDefinition>
                 <!-- CheckBoxes' section -->
@@ -67,7 +74,10 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Название жанра:"></TextBlock>
+                        <TextBlock Text="Факультет-специальность:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Кафедра:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -75,12 +85,18 @@
                 <StackPanel Grid.Column="1" Margin="10,0" VerticalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
                         <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Name" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <ComboBox Name="FacultyAndSpecialty" ItemsSource="{Binding Path=FacultyAndSpecialties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedFacultyAndSpecialtyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
+                    </Grid>
+                    <Grid>
+                        <ComboBox Name="Cathedra" ItemsSource="{Binding Path=Cathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -91,7 +107,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активный" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

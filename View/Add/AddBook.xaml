@@ -1,16 +1,16 @@
-﻿<Window x:Class="Database4.View.AddTeacher"
+﻿<Window x:Class="Database4.View.AddBook"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
-        Title="Добавить преподавателя">
+        Title="Добавить книгу">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/WindowStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -33,7 +33,7 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление преподавателя" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление книги" Style="{StaticResource AddWindow Header}"></Label>
         </Grid>
 
         <!-- Main content -->
@@ -67,19 +67,16 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Имя:"></TextBlock>
+                        <TextBlock Text="Название:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Фамилия:"></TextBlock>
+                        <TextBlock Text="Автор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Отчество:"></TextBlock>
+                        <TextBlock Text="Издание:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Город:"></TextBlock>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Кафедра:"></TextBlock>
+                        <TextBlock Text="Жанр:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -96,17 +93,15 @@
                         <TextBox Name="Name" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Surname" Text="{Binding Path=Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                    </Grid>
-                    <Grid>
-                        <TextBox Name="Patronymic" Text="{Binding Path=Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                    </Grid>
-                    <Grid>
-                        <ComboBox Name="City" ItemsSource="{Binding Path=Cities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedCityIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox Name="Author" ItemsSource="{Binding Path=Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedAuthorIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                     <Grid>
-                        <ComboBox Name="Cathedra" ItemsSource="{Binding Path=Cathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox Name="Publisher" ItemsSource="{Binding Path=Publishers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedPublisherIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
+                    </Grid>
+                    <Grid>
+                        <ComboBox Name="Genre" ItemsSource="{Binding Path=Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedGenreIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                     </Grid>
                 </StackPanel>
@@ -118,7 +113,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активный" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

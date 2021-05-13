@@ -1,16 +1,16 @@
-﻿<Window x:Class="Database4.View.AddCathedra"
+﻿<Window x:Class="Database4.View.AddCity"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
-        Title="Добавить кафедру">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodel="clr-namespace:Database4.ViewModel" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
+        Title="Добавить город">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/WindowStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -32,9 +32,9 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление кафедры" Style="{StaticResource AddWindow Header}"></Label>
-        </Grid>
+         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
+             <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление города" Style="{StaticResource AddWindow Header}"></Label>
+         </Grid>
 
         <!-- Main content -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -67,10 +67,10 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Полное название кафедры:"></TextBlock>
+                        <TextBlock Text="Название:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Краткое название кафедры:"></TextBlock>
+                        <TextBlock Text="Страна:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -78,26 +78,28 @@
                 <StackPanel Grid.Column="1" Margin="10,0" VerticalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
                     </StackPanel.Resources>
                     <Grid>
-                        <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="ID" IsEnabled="False"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Name" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="Name"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="ShortName" Text="{Binding Path=ShortName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <ComboBox ItemsSource="{Binding Path=Countries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedCountryIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="Country">
+                        </ComboBox>
                     </Grid>
                 </StackPanel>
             </Grid>
 
             <!-- CheckBoxes' section -->
-            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical">
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активный" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

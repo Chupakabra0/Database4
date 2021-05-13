@@ -7,15 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataGridExtensions" Version="2.6.0-beta1" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\Command\" />
+    <PackageReference Include="DataGridExtensions" Version="2.6.0-beta1" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
   </ItemGroup>
 
 </Project>

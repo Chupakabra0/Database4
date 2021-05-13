@@ -1,16 +1,19 @@
-﻿<Window x:Class="Database4.View.AddDegree"
+﻿<Window x:Class="Database4.View.AddGroup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
-        Title="Добавить степень">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Добавить группу">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/WindowStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -33,7 +36,7 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление степени" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление группы" Style="{StaticResource AddWindow Header}"></Label>
         </Grid>
 
         <!-- Main content -->
@@ -67,10 +70,16 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Название степени:"></TextBlock>
+                        <TextBlock Text="Год:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Буква степени:"></TextBlock>
+                        <TextBlock Text="Номер:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Фак. спец. каф.:"></TextBlock>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Степень:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -78,21 +87,32 @@
                 <StackPanel Grid.Column="1" Margin="10,0" VerticalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource AddWindow TextBox}"></Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource AddWindow ComboBox}"></Style>
+                        <Style TargetType="xctk:IntegerUpDown" BasedOn="{StaticResource AddWindow Spinner}"></Style>
                     </StackPanel.Resources>
                     <Grid>
                         <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Name" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <xctk:IntegerUpDown Name="Year" Text="{Binding Path=Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
                     </Grid>
                     <Grid>
-                        <TextBox Name="ShortLetter" Text="{Binding Path=ShortLetter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <!--<TextBox Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
+                        <xctk:IntegerUpDown Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
+                    </Grid>
+                    <Grid>
+                        <ComboBox Name="FacultyAndSpecialtyAndCathedra" ItemsSource="{Binding Path=FacultyAndSpecialtyAndCathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedFacultyAndSpecialtyAndCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
+                    </Grid>
+                    <Grid>
+                        <ComboBox Name="Degree" ItemsSource="{Binding Path=Degrees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedDegreeIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
                     </Grid>
                 </StackPanel>
             </Grid>
 
             <!-- CheckBoxes' section -->
-            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical">
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>

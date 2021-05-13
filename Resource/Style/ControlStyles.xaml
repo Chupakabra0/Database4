@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Font/Fonts.xaml" />
@@ -31,6 +32,15 @@
         <Setter Property="BorderThickness" Value="1"></Setter>
     </Style>
 
+    <!-- Add-window TextBox -->
+    <Style TargetType="xctk:IntegerUpDown" x:Key="AddWindow Spinner">
+        <Setter Property="MinWidth" Value="80"></Setter>
+        <Setter Property="Margin" Value="0, 0, 0, 10"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource Grandview Regular}"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
+
     <!-- Add-window add button -->
     <Style TargetType="Button" x:Key="AddWindow Add Button">
         <Setter Property="Margin" Value="0, 0, 10, 0"></Setter>
@@ -52,12 +62,28 @@
         <Setter Property="Margin" Value="0, 0, 0, 10"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource Grandview Regular}"></Setter>
         <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="IsEditable" Value="True"></Setter>
+        <Setter Property="IsTextSearchEnabled" Value="True"></Setter>
+        <Setter Property="IsTextSearchCaseSensitive" Value="False"></Setter>
     </Style>
 
     <!-- Add-window check box -->
     <Style TargetType="CheckBox" x:Key="AddWindow CheckBox">
         <Setter Property="FontFamily" Value="{StaticResource Grandview Italic}"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    <!-- DataGrid's cell style -->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Grid Background="{TemplateBinding Background}" VerticalAlignment="Stretch">
+                        <ContentPresenter VerticalAlignment="Center" Margin="5"></ContentPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!--==============================================================================-->

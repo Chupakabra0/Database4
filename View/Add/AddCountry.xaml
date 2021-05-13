@@ -1,16 +1,18 @@
-﻿<Window x:Class="Database4.View.AddWorker"
+﻿<Window x:Class="Database4.View.AddCountry"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
-        Title="Добавить рабочего">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="Добавить страну">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/Style/ControlStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="../Resource/Style/WindowStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/ControlStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resource/Style/WindowStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -33,7 +35,7 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление рабочего" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление страны" Style="{StaticResource AddWindow Header}"></Label>
         </Grid>
 
         <!-- Main content -->
@@ -67,13 +69,13 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Имя:"></TextBlock>
+                        <TextBlock Text="Полное название страны:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Фамилия:"></TextBlock>
+                        <TextBlock Text="Короткое название страны:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Отчество:"></TextBlock>
+                        <TextBlock Text="Код ISO:"></TextBlock>
                     </Grid>
                 </StackPanel>
 
@@ -86,13 +88,13 @@
                         <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Name" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Name="LongName" Text="{Binding Path=LongName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Surname" Text="{Binding Path=Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Name="ShortName" Text="{Binding Path=ShortName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <TextBox Name="Patronymic" Text="{Binding Path=Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Name="ISOCode" Text="{Binding Path=ISOCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -103,7 +105,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активный" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -115,7 +117,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
-                            </i:CallMethodAction>
+                            </i:CallMethodAction> 
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
