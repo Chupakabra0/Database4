@@ -13,12 +13,14 @@ namespace Database4.ViewModel {
             this.Id = Convert.ToInt32(GlobalAppDataContext.Instance.Database.SqlQuery<int?>
                 ($"select last_value from sys.identity_columns as a where object_id = object_id('{ nameof(AppDataContext.Genres) }')").ToList().FirstOrDefault() ?? 0) + 1;
             this.IsActive = true;
+            this.InitTitles(StringConst.Adding, $"{StringConst.Adding} жанра", StringConst.Add);
         }
 
         public AddGenresViewModel(Window windowRef, int id) : base(windowRef) {
             this.AddCommand = new RelayCommand(this.Edit);
             this.Id = id;
             this.GetAllData(this.Id);
+            this.InitTitles(StringConst.Editing, $"{StringConst.Editing} жанра", StringConst.Edit);
         }
 
         public int    Id        { get; set; }

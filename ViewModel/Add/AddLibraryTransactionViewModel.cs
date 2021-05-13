@@ -19,12 +19,14 @@ namespace Database4.ViewModel {
             this.TakeDate = DateTime.Today;
             this.ReturnDate = DateTime.Today;
             this.IsActive = true;
+            this.InitTitles(StringConst.Adding, $"{StringConst.Adding} сделки", StringConst.Add);
         }
 
         public AddLibraryTransactionViewModel(Window windowRef, int id) : base(windowRef) {
             this.AddCommand = new RelayCommand(this.Edit);
             this.Id = id;
             this.GetAllData(this.Id);
+            this.InitTitles(StringConst.Editing, $"{StringConst.Editing} сделки", StringConst.Edit);
         }
 
         public int Id                              { get; set; }

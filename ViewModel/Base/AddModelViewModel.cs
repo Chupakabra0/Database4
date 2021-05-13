@@ -9,10 +9,18 @@ namespace Database4.ViewModel {
             this.windowReference_ = window;
         }
 
-        public string   Title      { get; set; }
-        public ICommand AddCommand { get; protected set; }
+        public string   TitleWindow     { get; set; }
+        public string   HeaderWindow    { get; set; }
+        public string   AddButtonText   { get; set; }
+        public ICommand AddCommand      { get; protected set; }
 
         protected Window windowReference_;
+
+        protected void InitTitles(string titleWindow, string header, string buttonText) {
+            this.TitleWindow   = titleWindow;
+            this.HeaderWindow  = header;
+            this.AddButtonText = buttonText;
+        }
 
         abstract protected void Add();
         abstract protected void Edit();

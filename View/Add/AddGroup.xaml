@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Добавить группу">
+        Title="{Binding Path=TitleWindow, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 
     <!-- Connect static resources/styles/etc -->
     <Window.Resources>
@@ -36,7 +36,7 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0, 30, 0, 0">
-            <Label Grid.Row="0" HorizontalAlignment="Center" Content="Добавление группы" Style="{StaticResource AddWindow Header}"></Label>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Content="{Binding Path=HeaderWindow, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AddWindow Header}"></Label>
         </Grid>
 
         <!-- Main content -->
@@ -133,7 +133,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <Button Name="Add" Style="{StaticResource AddWindow Add Button}" Command="{Binding Path=AddCommand}"></Button>
+                <Button Name="Add" Content="{Binding Path=AddButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AddWindow Add Button}" Command="{Binding Path=AddCommand}"></Button>
             </StackPanel>
         </Grid>
     </Grid>

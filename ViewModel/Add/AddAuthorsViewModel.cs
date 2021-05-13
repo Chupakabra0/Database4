@@ -13,12 +13,14 @@ namespace Database4.ViewModel {
             this.Id = Convert.ToInt32(GlobalAppDataContext.Instance.Database.SqlQuery<int?>
                 ($"select last_value from sys.identity_columns as a where object_id = object_id('{ nameof(AppDataContext.Authors) }')").ToList().FirstOrDefault() ?? 0) + 1;
             this.IsActive = true;
+            this.InitTitles(StringConst.Adding, $"{StringConst.Adding} автора", StringConst.Add);
         }
 
         public AddAuthorsViewModel(Window windowRef, int id) : base(windowRef) {
             this.AddCommand = new RelayCommand(this.Edit);
             this.Id = id;
             this.GetAllData(this.Id);
+            this.InitTitles(StringConst.Editing, $"{StringConst.Editing} автора", StringConst.Edit);
         }
 
         public int     Id          { get; set; }

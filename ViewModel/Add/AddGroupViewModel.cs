@@ -17,12 +17,14 @@ namespace Database4.ViewModel {
             this.Year = DateTime.Today.Year;
             this.Serial = 1;
             this.IsActive = true;
+            this.InitTitles(StringConst.Adding, $"{StringConst.Adding} группы", StringConst.Add);
         }
 
         public AddGroupViewModel(Window windowRef, int id) : base(windowRef) {
             this.AddCommand = new RelayCommand(this.Edit);
             this.Id = id;
             this.GetAllData(this.Id);
+            this.InitTitles(StringConst.Editing, $"{StringConst.Editing} группы", StringConst.Edit);
         }
 
         public int Id     { get; set; }
