@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
+using ConsoleDBTest.Models;
 
 namespace ConsoleDBTest.Utils.StringUtils {
     public static class StringUtils {
@@ -8,5 +9,13 @@ namespace ConsoleDBTest.Utils.StringUtils {
 
         public static string ToFirstLetterUpperCase(this string str) =>
             CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
+
+        public static string ClientTypeToString(this ClientType clientType) =>
+            clientType switch {
+                ClientType.None    => "None",
+                ClientType.Teacher => "Преподаватель",
+                ClientType.Student => "Студент",
+                _                  => string.Empty
+            };
     }
 }

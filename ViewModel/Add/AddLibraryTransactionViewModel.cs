@@ -6,6 +6,8 @@ using PropertyChanged;
 using System.Linq;
 using System.Collections.Generic;
 using ConsoleDBTest.ViewModels;
+using ConsoleDBTest.Models;
+using ConsoleDBTest.Utils.StringUtils;
 
 namespace Database4.ViewModel {
     [AddINotifyPropertyChangedInterface]
@@ -14,6 +16,9 @@ namespace Database4.ViewModel {
             this.AddCommand = new RelayCommand(this.Add);
             this.Id = Convert.ToInt32(GlobalAppDataContext.Instance.Database.SqlQuery<int?>
                 ($"select last_value from sys.identity_columns as a where object_id = object_id('{ nameof(AppDataContext.LibraryTransactions) }')").ToList().FirstOrDefault() ?? 0) + 1;
+            this.TakeDate = DateTime.Today;
+            this.ReturnDate = DateTime.Today;
+            this.IsActive = true;
         }
 
         public AddLibraryTransactionViewModel(Window windowRef, int id) : base(windowRef) {
@@ -37,7 +42,7 @@ namespace Database4.ViewModel {
 
         public bool IsActive                       { get; set; }
         // TIP: if client isn't Teacher
-        public bool IsInTime                       => this.Clients[this.SelectedClientIndex].Teacher == "null";
+        public bool IsInTime                       => this.Clients[this.SelectedClientIndex].ClientTypeStr == ClientType.Teacher.ClientTypeToString();
 
         protected override void Add() {
             try {

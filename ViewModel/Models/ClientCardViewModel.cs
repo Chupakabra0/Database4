@@ -9,9 +9,13 @@ namespace ConsoleDBTest.ViewModels {
         public ClientCardViewModel(ClientCard clientCard, AppDataContext db) {
             this.Id        = clientCard.Id;
             this.DateGiven = ClientCardViewModel.GetDate(clientCard.DateGiven);
-            this.Student   = ClientCardViewModel.GetStudentName(clientCard.StudentId, db);
-            this.Teacher   = ClientCardViewModel.GetTeacherName(clientCard.TeacherId, db);
             this.IsActive  = clientCard.IsActive;
+
+            var student = ClientCardViewModel.GetStudentName(clientCard.StudentId, db);
+            var teacher = ClientCardViewModel.GetTeacherName(clientCard.TeacherId, db);
+
+            this.ClientName = student == "null" ? teacher : student;
+            this.ClientTypeStr = student == "null" ? ClientType.Teacher.ClientTypeToString() : ClientType.Student.ClientTypeToString();
         }
 
         private static string GetDate(DateTime? dateTime) =>
@@ -42,15 +46,14 @@ namespace ConsoleDBTest.ViewModels {
             return teacher == null ? "null" : StringUtils.GetPersonName(teacher.Name, teacher.Surname, teacher.Patronymic);
         }
 
-        public int    Id        { get; set; }
-        public string DateGiven { get; set; }
-        public string Student   { get; set; }
-        public string Teacher   { get; set; }
-        public bool   IsActive  { get; set; }
+        public int    Id            { get; set; }
+        public string DateGiven     { get; set; }
+        public string ClientName    { get; set; }
+        public string ClientTypeStr { get; set; }
+        public bool   IsActive      { get; set; }
 
         public override string ToString() {
-            var temp = this.Student == "null" ? this.Teacher : this.Student;
-            return $"#{this.Id}-{temp}";
+            return $"#{this.Id}-{this.ClientName}";
         }
     }
 }

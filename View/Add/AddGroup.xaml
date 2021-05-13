@@ -94,11 +94,11 @@
                         <TextBox Name="ID" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </Grid>
                     <Grid>
-                        <xctk:IntegerUpDown Name="Year" Text="{Binding Path=Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
+                        <xctk:IntegerUpDown Name="Year" Text="{Binding Path=Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="1980"></xctk:IntegerUpDown>
                     </Grid>
                     <Grid>
                         <!--<TextBox Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
-                        <xctk:IntegerUpDown Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></xctk:IntegerUpDown>
+                        <xctk:IntegerUpDown Name="Serial" Text="{Binding Path=Serial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0"></xctk:IntegerUpDown>
                     </Grid>
                     <Grid>
                         <ComboBox Name="FacultyAndSpecialtyAndCathedra" ItemsSource="{Binding Path=FacultyAndSpecialtyAndCathedras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=SelectedFacultyAndSpecialtyAndCathedraIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

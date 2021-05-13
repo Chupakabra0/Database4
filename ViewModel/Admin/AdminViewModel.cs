@@ -10,7 +10,8 @@ using Database4.View;
 using System.Windows;
 using Database4.View.Login;
 using Xceed.Wpf.Toolkit;
-using System.Drawing;
+using ConsoleDBTest.Utils.StringUtils;
+using ConsoleDBTest.Models;
 
 namespace Database4.ViewModel {
     [AddINotifyPropertyChangedInterface]
@@ -712,7 +713,7 @@ namespace Database4.ViewModel {
         public void EditClientCards() {
             var temp = new AddClientCard();
 
-            temp.DataContext = this.SelectedClientCard.Student is "null"
+            temp.DataContext = this.SelectedClientCard.ClientTypeStr == ClientType.Teacher.ClientTypeToString()
                 ? new AddTeacherClientCardViewModel(temp, this.SelectedClientCard.Id)
                 : new AddStudentClientCardViewModel(temp, this.SelectedClientCard.Id);
 
