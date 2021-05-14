@@ -829,7 +829,7 @@ namespace Database4.ViewModel {
         public string CloseButtonText  => "Закрыть";
         public string ExitButtonText   => "Выйти";
 
-        public bool IsAdmin { get; } = false;
+        public bool IsAdmin { get; }
 
         public string Title => "БД \"Библиотека университета\"";
 
