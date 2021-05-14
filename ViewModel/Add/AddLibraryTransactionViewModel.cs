@@ -44,7 +44,7 @@ namespace Database4.ViewModel {
 
         public bool IsActive                       { get; set; }
         // TIP: if client isn't Teacher
-        public bool IsInTime                       => this.Clients[this.SelectedClientIndex].ClientTypeStr == ClientType.Teacher.ClientTypeToString();
+        public bool IsInTime                       => this.Clients[this.SelectedClientIndex].ClientTypeStr == ClientType.Student.ClientTypeToString();
 
         protected override void Add() {
             try {
