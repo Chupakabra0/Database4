@@ -76,7 +76,7 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Факультет-специальность:"></TextBlock>
+                        <TextBlock Text="Факультет-Специальность:"></TextBlock>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Кафедра:"></TextBlock>
@@ -109,7 +109,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активность" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

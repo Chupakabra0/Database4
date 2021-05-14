@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using ConsoleDBTest.Models;
 using ConsoleDBTest.Utils.StringUtils;
@@ -47,9 +48,17 @@ namespace ConsoleDBTest.ViewModels {
         }
 
         public int    Id            { get; set; }
+
+        [DisplayName("Дата выдачи")]
         public string DateGiven     { get; set; }
+
+        [DisplayName("Имя клиента")]
         public string ClientName    { get; set; }
+
+        [DisplayName("Профессия")]
         public string ClientTypeStr { get; set; }
+
+        [DisplayName("Активность")]
         public bool   IsActive      { get; set; }
 
         public override string ToString() {

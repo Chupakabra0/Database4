@@ -1,4 +1,5 @@
-﻿using ConsoleDBTest.Models;
+﻿using System.ComponentModel;
+using ConsoleDBTest.Models;
 using ConsoleDBTest.Utils.StringUtils;
 
 namespace ConsoleDBTest.ViewModels {
@@ -12,9 +13,17 @@ namespace ConsoleDBTest.ViewModels {
         }
 
         public int    Id         { get; set; }
+
+        [DisplayName("Имя")]
         public string Name       { get; set; }
+
+        [DisplayName("Фамилия")]
         public string Surname    { get; set; }
+
+        [DisplayName("Отчество")]
         public string Patronymic { get; set; }
+
+        [DisplayName("Активность")]
         public bool   IsActive   { get; set; }
 
         public override string ToString() => StringUtils.GetPersonName(this.Name, this.Surname, this.Patronymic);

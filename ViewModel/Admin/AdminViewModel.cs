@@ -130,7 +130,7 @@ namespace Database4.ViewModel {
         public void DeleteSpecialties() {
             if (Xceed.Wpf.Toolkit.MessageBox.Show("Вы уверены, что хотите удалить эту специальность?", "Удаление специальности",
                                 MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) is MessageBoxResult.Yes) {
-                new CityDealer().Delete(GlobalAppDataContext.Instance, this.SelectedCity.Id);
+                new SpecialtyDealer().Delete(GlobalAppDataContext.Instance, this.SelectedSpecialty.Id);
                 this.Update();
             }
         }
@@ -825,7 +825,7 @@ namespace Database4.ViewModel {
         public string UpdateButtonText => "Обновить";
         public string AddButtonText    => "Добавить";
         public string DeleteButtonText => "Удалить";
-        public string EditButtonText   => "Редактировать";
+        public string EditButtonText   => "Изменить";
         public string CloseButtonText  => "Закрыть";
         public string ExitButtonText   => "Выйти";
 
@@ -837,79 +837,119 @@ namespace Database4.ViewModel {
 
         public ICommand ExitCommand => new RelayParameterCommand(o => this.Exit(o as Window));
 
-        public ICommand AddCommand => this.SelectedTab switch {
-            nameof(AppDataContext.Authors)                          => this.AddToAuthorsCommand,
-            nameof(AppDataContext.Books)                            => this.AddToBooksCommand,
-            nameof(AppDataContext.Cathedras)                        => this.AddToCathedrasCommand,
-            nameof(AppDataContext.Cities)                           => this.AddToCitiesCommand,
-            nameof(AppDataContext.Countries)                        => this.AddToCountriesCommand,
-            nameof(AppDataContext.Degrees)                          => this.AddToDegreesCommand,
-            nameof(AppDataContext.Faculties)                        => this.AddToFacultiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialties)            => this.AddToFacultyAndSpecialtiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialtyAndCathedras)  => this.AddToFacultyAndSpecialtyAndCathedrasCommand,
-            nameof(AppDataContext.Genres)                           => this.AddToGenresCommand,
-            nameof(AppDataContext.Groups)                           => this.AddToGroupsCommand,
-            nameof(AppDataContext.Publishers)                       => this.AddToPublishersCommand,
-            nameof(AppDataContext.ClientCards)                      => this.AddToClientCardsCommand,
-            nameof(AppDataContext.LibraryTransactions)              => this.AddToLibraryTransactionsCommand,
-            nameof(AppDataContext.Students)                         => this.AddToStudentsCommand,
-            nameof(AppDataContext.Specialties)                      => this.AddToSpecialtiesCommand,
-            nameof(AppDataContext.Teachers)                         => this.AddToTeachersCommand,
-            nameof(AppDataContext.Workers)                          => this.AddToWorkersCommand,
-            _                                                       => new RelayCommand(() => { }, _ => false)
-        };
+        public ICommand AddCommand {
+            get {
+                try {
+                    return this.SelectedTab switch {
+                        nameof(AppDataContext.Authors) => this.AddToAuthorsCommand,
+                        nameof(AppDataContext.Books) => this.AddToBooksCommand,
+                        nameof(AppDataContext.Cathedras) => this.AddToCathedrasCommand,
+                        nameof(AppDataContext.Cities) => this.AddToCitiesCommand,
+                        nameof(AppDataContext.Countries) => this.AddToCountriesCommand,
+                        nameof(AppDataContext.Degrees) => this.AddToDegreesCommand,
+                        nameof(AppDataContext.Faculties) => this.AddToFacultiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialties) => this.AddToFacultyAndSpecialtiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialtyAndCathedras) => this.AddToFacultyAndSpecialtyAndCathedrasCommand,
+                        nameof(AppDataContext.Genres) => this.AddToGenresCommand,
+                        nameof(AppDataContext.Groups) => this.AddToGroupsCommand,
+                        nameof(AppDataContext.Publishers) => this.AddToPublishersCommand,
+                        nameof(AppDataContext.ClientCards) => this.AddToClientCardsCommand,
+                        nameof(AppDataContext.LibraryTransactions) => this.AddToLibraryTransactionsCommand,
+                        nameof(AppDataContext.Students) => this.AddToStudentsCommand,
+                        nameof(AppDataContext.Specialties) => this.AddToSpecialtiesCommand,
+                        nameof(AppDataContext.Teachers) => this.AddToTeachersCommand,
+                        nameof(AppDataContext.Workers) => this.AddToWorkersCommand,
+                        _ => new RelayCommand(() => { }, _ => false)
+                    };
+                }
+                catch(Exception) {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Ошибка при добавлении. Некорректные данные.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); ;
+                    return null;
+                }
+            }
+        }
 
-        public ICommand EditCommand => this.SelectedTab switch {
-            nameof(AppDataContext.Authors)                          => this.EditAuthorsCommand,
-            nameof(AppDataContext.Books)                            => this.EditBooksCommand,
-            nameof(AppDataContext.Cathedras)                        => this.EditCathedrasCommand,
-            nameof(AppDataContext.Cities)                           => this.EditCitiesCommand,
-            nameof(AppDataContext.Countries)                        => this.EditCountriesCommand,
-            nameof(AppDataContext.Degrees)                          => this.EditDegreesCommand,
-            nameof(AppDataContext.Faculties)                        => this.EditFacultiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialties)            => this.EditFacultyAndSpecialtiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialtyAndCathedras)  => this.EditFacultyAndSpecialtyAndCathedrasCommand,
-            nameof(AppDataContext.Genres)                           => this.EditGenresCommand,
-            nameof(AppDataContext.Groups)                           => this.EditGroupsCommand,
-            nameof(AppDataContext.Publishers)                       => this.EditPublishersCommand,
-            nameof(AppDataContext.ClientCards)                      => this.EditClientCardsCommand,
-            nameof(AppDataContext.LibraryTransactions)              => this.EditLibraryTransactionsCommand,
-            nameof(AppDataContext.Students)                         => this.EditStudentsCommand,
-            nameof(AppDataContext.Specialties)                      => this.EditSpecialtiesCommand,
-            nameof(AppDataContext.Teachers)                         => this.EditTeachersCommand,
-            nameof(AppDataContext.Workers)                          => this.EditWorkersCommand,
-             _                                                      => new RelayCommand(() => { }, _ => false)
-        };
+        public ICommand EditCommand { 
+            get {
+                try {
+                    return this.SelectedTab switch {
+                        nameof(AppDataContext.Authors) => this.EditAuthorsCommand,
+                        nameof(AppDataContext.Books) => this.EditBooksCommand,
+                        nameof(AppDataContext.Cathedras) => this.EditCathedrasCommand,
+                        nameof(AppDataContext.Cities) => this.EditCitiesCommand,
+                        nameof(AppDataContext.Countries) => this.EditCountriesCommand,
+                        nameof(AppDataContext.Degrees) => this.EditDegreesCommand,
+                        nameof(AppDataContext.Faculties) => this.EditFacultiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialties) => this.EditFacultyAndSpecialtiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialtyAndCathedras) => this.EditFacultyAndSpecialtyAndCathedrasCommand,
+                        nameof(AppDataContext.Genres) => this.EditGenresCommand,
+                        nameof(AppDataContext.Groups) => this.EditGroupsCommand,
+                        nameof(AppDataContext.Publishers) => this.EditPublishersCommand,
+                        nameof(AppDataContext.ClientCards) => this.EditClientCardsCommand,
+                        nameof(AppDataContext.LibraryTransactions) => this.EditLibraryTransactionsCommand,
+                        nameof(AppDataContext.Students) => this.EditStudentsCommand,
+                        nameof(AppDataContext.Specialties) => this.EditSpecialtiesCommand,
+                        nameof(AppDataContext.Teachers) => this.EditTeachersCommand,
+                        nameof(AppDataContext.Workers) => this.EditWorkersCommand,
+                        _ => new RelayCommand(() => { }, _ => false)
+                    };
+                }
+                catch(Exception) {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Ошибка при редактировании. Некорректные данные.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); ;
+                    return null;
+                }
+            }
+        }
 
-        public ICommand DeleteCommand => this.SelectedTab switch {
-            nameof(AppDataContext.Authors)                          => this.DeleteAuthorsCommand,
-            nameof(AppDataContext.Books)                            => this.DeleteBooksCommand,
-            nameof(AppDataContext.Cathedras)                        => this.DeleteCathedrasCommand,
-            nameof(AppDataContext.Cities)                           => this.DeleteCitiesCommand,
-            nameof(AppDataContext.Countries)                        => this.DeleteCountriesCommand,
-            nameof(AppDataContext.Degrees)                          => this.DeleteDegreesCommand,
-            nameof(AppDataContext.Faculties)                        => this.DeleteFacultiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialties)            => this.DeleteFacultyAndSpecialtiesCommand,
-            nameof(AppDataContext.FacultyAndSpecialtyAndCathedras)  => this.DeleteFacultyAndSpecialtyAndCathedrasCommand,
-            nameof(AppDataContext.Genres)                           => this.DeleteGenresCommand,
-            nameof(AppDataContext.Groups)                           => this.DeleteGroupsCommand,
-            nameof(AppDataContext.Publishers)                       => this.DeletePublishersCommand,
-            nameof(AppDataContext.ClientCards)                      => this.DeleteClientCardsCommand,
-            nameof(AppDataContext.LibraryTransactions)              => this.DeleteLibraryTransactionsCommand,
-            nameof(AppDataContext.Students)                         => this.DeleteStudentsCommand,
-            nameof(AppDataContext.Specialties)                      => this.DeleteSpecialtiesCommand,
-            nameof(AppDataContext.Teachers)                         => this.DeleteTeachersCommand,
-            nameof(AppDataContext.Workers)                          => this.DeleteWorkersCommand,
-             _                                                      => new RelayCommand(() => { }, _ => false)
-        };
+        public ICommand DeleteCommand {
+            get {
+                try {
+                    return this.SelectedTab switch {
+                        nameof(AppDataContext.Authors) => this.DeleteAuthorsCommand,
+                        nameof(AppDataContext.Books) => this.DeleteBooksCommand,
+                        nameof(AppDataContext.Cathedras) => this.DeleteCathedrasCommand,
+                        nameof(AppDataContext.Cities) => this.DeleteCitiesCommand,
+                        nameof(AppDataContext.Countries) => this.DeleteCountriesCommand,
+                        nameof(AppDataContext.Degrees) => this.DeleteDegreesCommand,
+                        nameof(AppDataContext.Faculties) => this.DeleteFacultiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialties) => this.DeleteFacultyAndSpecialtiesCommand,
+                        nameof(AppDataContext.FacultyAndSpecialtyAndCathedras) => this.DeleteFacultyAndSpecialtyAndCathedrasCommand,
+                        nameof(AppDataContext.Genres) => this.DeleteGenresCommand,
+                        nameof(AppDataContext.Groups) => this.DeleteGroupsCommand,
+                        nameof(AppDataContext.Publishers) => this.DeletePublishersCommand,
+                        nameof(AppDataContext.ClientCards) => this.DeleteClientCardsCommand,
+                        nameof(AppDataContext.LibraryTransactions) => this.DeleteLibraryTransactionsCommand,
+                        nameof(AppDataContext.Students) => this.DeleteStudentsCommand,
+                        nameof(AppDataContext.Specialties) => this.DeleteSpecialtiesCommand,
+                        nameof(AppDataContext.Teachers) => this.DeleteTeachersCommand,
+                        nameof(AppDataContext.Workers) => this.DeleteWorkersCommand,
+                        _ => new RelayCommand(() => { }, _ => false)
+                    };
+                }
+                catch(Exception) {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Ошибка при удалении. Данные невозможно удалить или они на что-то ссылаются.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); ;
+                    return null;
+                }
+            }
+        }
 
         public ICommand UpdateCommand => new RelayCommand(this.Update, _ => this.SelectedTab != null);
 
-        public ICommand CloseCommand => this.SelectedTab switch {
-            nameof(AppDataContext.ClientCards)          => this.CloseClientCardsCommand,
-            nameof(AppDataContext.LibraryTransactions)  => this.CloseLibraryTransactionsCommand,
-            _                                           => new RelayCommand(() => { }, _ => false)
-        };
+        public ICommand CloseCommand { 
+            get {
+                try {
+                    return this.SelectedTab switch {
+                        nameof(AppDataContext.ClientCards) => this.CloseClientCardsCommand,
+                        nameof(AppDataContext.LibraryTransactions) => this.CloseLibraryTransactionsCommand,
+                        _ => new RelayCommand(() => { }, _ => false)
+                    };
+                }
+                catch(Exception) {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Ошибка при закрытии. Некорректные данные.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); ;
+                    return null;
+                }
+            }
+        }
 
         public static string AuthorsTableName                               { get; set; } = nameof(AppDataContext.Authors);
         public static string BooksTableName                                 { get; set; } = nameof(AppDataContext.Books);

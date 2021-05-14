@@ -68,13 +68,13 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Карта клиента:"></TextBlock>
+                        <TextBlock Text="Карта:"></TextBlock>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Книга:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Выдал книгу:"></TextBlock>
+                        <TextBlock Text="Выдал:"></TextBlock>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Дата взятия:"></TextBlock>
@@ -121,7 +121,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активность" IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

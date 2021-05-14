@@ -1,4 +1,5 @@
-﻿using ConsoleDBTest.Models;
+﻿using System.ComponentModel;
+using ConsoleDBTest.Models;
 
 namespace ConsoleDBTest.ViewModels {
     public class CountryViewModel {
@@ -11,9 +12,17 @@ namespace ConsoleDBTest.ViewModels {
         }
 
         public int    Id        { get; set; }
+        
+        [DisplayName("Полное название")]
         public string LongName  { get; set; }
+
+        [DisplayName("Короткое название")]
         public string ShortName { get; set; }
+
+        [DisplayName("Код ISO")]
         public string ISOCode   { get; set; }
+
+        [DisplayName("Активность")]
         public bool   IsActive  { get; set; }
 
         public override string ToString() => this.ShortName;   

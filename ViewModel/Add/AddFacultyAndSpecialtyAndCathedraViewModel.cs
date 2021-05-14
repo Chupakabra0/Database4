@@ -37,7 +37,7 @@ namespace Database4.ViewModel {
 
         protected override void Add() {
             try {
-                new FacultyAndSpecialtyAndCathedraDealer().AddFacultyAndSpecialtyAndCathedra(GlobalAppDataContext.Instance, this.FacultyAndSpecialties[this.SelectedCathedraIndex].Id, this.Cathedras[this.SelectedCathedraIndex].Id, this.IsActive);
+                new FacultyAndSpecialtyAndCathedraDealer().AddFacultyAndSpecialtyAndCathedra(GlobalAppDataContext.Instance, this.FacultyAndSpecialties[this.SelectedFacultyAndSpecialtyIndex].Id, this.Cathedras[this.SelectedCathedraIndex].Id, this.IsActive);
                 this.windowReference_.DialogResult = MessageBox.Show("Готово!", "Добавлено!", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK;
                 this.windowReference_.Close();
             }
@@ -48,7 +48,7 @@ namespace Database4.ViewModel {
 
         protected override void Edit() {
             try {
-                new FacultyAndSpecialtyAndCathedraDealer().UpdateFacultyAndSpecialtyAndCathedra(GlobalAppDataContext.Instance, this.Id, this.FacultyAndSpecialties[this.SelectedCathedraIndex].Id, this.Cathedras[this.SelectedCathedraIndex].Id, this.IsActive);
+                new FacultyAndSpecialtyAndCathedraDealer().UpdateFacultyAndSpecialtyAndCathedra(GlobalAppDataContext.Instance, this.Id, this.FacultyAndSpecialties[this.SelectedFacultyAndSpecialtyIndex].Id, this.Cathedras[this.SelectedCathedraIndex].Id, this.IsActive);
                 this.windowReference_.DialogResult = MessageBox.Show("Готово!", "Отредактировано!", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK;
                 this.windowReference_.Close();
             }

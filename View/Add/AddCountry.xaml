@@ -69,10 +69,10 @@
                         <TextBlock Text="Идентификатор:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Полное название страны:"></TextBlock>
+                        <TextBlock Text="Полное название:"></TextBlock>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Короткое название страны:"></TextBlock>
+                        <TextBlock Text="Короткое название:"></TextBlock>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Код ISO:"></TextBlock>
@@ -105,7 +105,7 @@
                     <StackPanel.Resources>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource AddWindow CheckBox}"></Style>
                     </StackPanel.Resources>
-                    <CheckBox Padding="5, 0" Content="Активная" IsChecked="{Binding Path=IsActive, Mode=TwoWay}"></CheckBox>
+                    <CheckBox Padding="5, 0" Content="Активность" IsChecked="{Binding Path=IsActive, Mode=TwoWay}"></CheckBox>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using ConsoleDBTest.Models;
 using Database4.Data;
 
@@ -26,8 +27,14 @@ namespace ConsoleDBTest.ViewModels {
               ?.Name ?? "null";
 
         public int    Id        { get; set; }
+
+        [DisplayName("Факультет")]
         public string Faculty   { get; set; }
+
+        [DisplayName("Специальность")]
         public string Specialty { get; set; }
+
+        [DisplayName("Активность")]
         public bool   IsActive  { get; set; }
 
         public override string ToString() => $"{this.Faculty}-{this.Specialty}";

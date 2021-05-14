@@ -8,7 +8,9 @@
         xmlns:local="clr-namespace:Database4.Converter.GetControlHeader"
         xmlns:g="clr-namespace:Database4.Converter.GetButtonStateByHeader"
         xmlns:c="clr-namespace:Database4.Converter.ConvertBooleanToVisibility"
-        Title="{Binding Path=Title}"
+        xmlns:b="clr-namespace:Database4.Behavior"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="{Binding Path=Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
         Height="500" Width="850"
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
@@ -45,13 +47,17 @@
 
             <TabItem Name="ClientCards" Header="{Binding Path=ClientCardsTableName, Mode=OneTime}">
                 <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True" CanUserSortColumns="True" CanUserDeleteRows="True" CanUserAddRows="True" IsReadOnly="True" ItemsSource="{Binding Path=ClientCards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedClientCard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
             <TabItem Name="LibraryTransactions" Header="{Binding Path=LibraryTransactionsTableName, Mode=OneTime}">
                 <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True" CanUserSortColumns="True" CanUserDeleteRows="True" CanUserAddRows="True" IsReadOnly="True" ItemsSource="{Binding Path=LibraryTransactions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedLibraryTransaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -65,7 +71,9 @@
                           SelectedItem="{Binding Path=SelectedAuthor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -79,7 +87,9 @@
                           SelectedItem="{Binding Path=SelectedBook, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -93,13 +103,17 @@
                           SelectedItem="{Binding Path=SelectedCathedra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
             <TabItem Name="Cities" Header="{Binding Path=CitiesTableName, Mode=OneTime}" Visibility="{Binding Path=IsAdmin, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ResourceKey=convertBooleanToVisibility}}">
                 <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True" CanUserSortColumns="True" CanUserDeleteRows="True" CanUserAddRows="True" IsReadOnly="True" ItemsSource="{Binding Path=Cities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -113,7 +127,9 @@
                           SelectedItem="{Binding Path=SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -127,7 +143,9 @@
                           SelectedItem="{Binding Path=SelectedDegree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -141,7 +159,9 @@
                           SelectedItem="{Binding Path=SelectedFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -155,7 +175,9 @@
                           SelectedItem="{Binding Path=SelectedFacultyAndSpecialty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -169,7 +191,9 @@
                           SelectedItem="{Binding Path=SelectedFacultyAndSpecialtyAndCathedra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -183,13 +207,17 @@
                           SelectedItem="{Binding Path=SelectedGenre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
             <TabItem Name="Groups" Header="{Binding Path=GroupsTableName, Mode=OneTime}" Visibility="{Binding Path=IsAdmin, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ResourceKey=convertBooleanToVisibility}}">
                 <DataGrid dgx:DataGridFilter.IsAutoFilterEnabled="True" CanUserSortColumns="True" CanUserDeleteRows="True" CanUserAddRows="True" IsReadOnly="True" ItemsSource="{Binding Path=Groups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -203,7 +231,9 @@
                           SelectedItem="{Binding Path=SelectedPublisher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -217,7 +247,9 @@
                           SelectedItem="{Binding Path=SelectedSpecialty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -231,7 +263,9 @@
                           SelectedItem="{Binding Path=SelectedStudent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -245,7 +279,9 @@
                           SelectedItem="{Binding Path=SelectedTeacher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 
@@ -259,7 +295,9 @@
                           SelectedItem="{Binding Path=SelectedWorker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectionMode="Single"
                           AutoGenerateColumns="True">
-
+                    <i:Interaction.Behaviors>
+                        <b:ColumnHeaderBehavior></b:ColumnHeaderBehavior>
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </TabItem>
 

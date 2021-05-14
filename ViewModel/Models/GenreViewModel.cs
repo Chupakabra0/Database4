@@ -1,4 +1,5 @@
-﻿using ConsoleDBTest.Models;
+﻿using System.ComponentModel;
+using ConsoleDBTest.Models;
 
 namespace ConsoleDBTest.ViewModels {
     public class GenreViewModel {
@@ -9,7 +10,11 @@ namespace ConsoleDBTest.ViewModels {
         }
 
         public int    Id       { get; set; }
+
+        [DisplayName("Название")]
         public string Name     { get; set; }
+
+        [DisplayName("Активность")]
         public bool   IsActive { get; set; }
 
         public override string ToString() => this.Name;
