@@ -822,7 +822,7 @@ namespace Database4.ViewModel {
             }
         }
 
-        public string UpdateButtonText => "Обновить";
+        public string UpdateButtonText => "Сбросить";
         public string AddButtonText    => "Добавить";
         public string DeleteButtonText => "Удалить";
         public string EditButtonText   => "Изменить";
